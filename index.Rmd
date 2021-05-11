@@ -1,0 +1,28 @@
+---
+title: "Pancancer Microbial Pathways"
+author: "Abraham Gihawi"
+date: "10/05/2021"
+output: html_document
+---
+
+This repository provides access to the predicted of microbial pathways of non-human contigs assembled from cancer sequence data.
+
+For information on how this data was generated, please refer to the [GitHub repository](https://github.com/UEA-Cancer-Genetics-Lab/Pancancer_Microbial_Pathways).
+
+```{r preparingenvironment, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(plotly)
+library(magrittr)
+library(DT)
+```
+
+```{r loaddata, eval=TRUE, echo=FALSE, message=FALSE, warning=FALSE}
+pancancer <- read_tsv(file='data/pancancer_pathways.tsv', col_names = TRUE)
+
+datatable(pancancer, 
+          options = list(pageLength = 20, autoWidth=TRUE),
+          class = 'cell-border stripe',
+          filter = 'top',
+          rownames = FALSE,
+          colnames = c('Pathway', 'InterProScan Hits', 'Ontology'))
+```
